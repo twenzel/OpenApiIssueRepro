@@ -1,5 +1,4 @@
-﻿using IdentityExpress.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OpenApiIssueRepro.Services;
 
 namespace OpenApiIssueRepro.Controllers.Api
@@ -8,10 +7,10 @@ namespace OpenApiIssueRepro.Controllers.Api
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly IdentityServerUserManager<IdentityExpressUser> _userManager;
+        private readonly IdentityServerUserManager<TestUser> _userManager;
         private readonly SomeService _someService;
 
-        public UsersController(IdentityServerUserManager<IdentityExpressUser> userManager, SomeService someService)
+        public UsersController(IdentityServerUserManager<TestUser> userManager, SomeService someService)
         {
             _userManager = userManager;
             _someService = someService;

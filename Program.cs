@@ -1,4 +1,3 @@
-using IdentityExpress.Identity;
 using OpenApiIssueRepro.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IdentityServerUserManager<IdentityExpressUser>>();
+builder.Services.AddScoped<IdentityServerUserManager<TestUser>>();
 builder.Services.AddScoped<SomeService>();
 
 builder.Services.AddOpenApi("v1");
@@ -17,7 +16,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseMigrationsEndPoint();
+
 }
 else
 {

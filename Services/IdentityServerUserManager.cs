@@ -1,5 +1,4 @@
-﻿using IdentityExpress.Identity;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
 namespace OpenApiIssueRepro.Services
@@ -8,7 +7,7 @@ namespace OpenApiIssueRepro.Services
     /// User manager
     /// </summary>
     /// <typeparam name="TUser"></typeparam>
-    public partial class IdentityServerUserManager<TUser> : UserManager<TUser> where TUser : IdentityExpressUser
+    public partial class IdentityServerUserManager<TUser> : UserManager<TUser> where TUser : TestUser
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UserManager{TUser}"/> class.
@@ -42,8 +41,7 @@ namespace OpenApiIssueRepro.Services
         /// </summary>
         public void EnableIncludeDeletedUsers()
         {
-            if (Store is IdentityExpressUserStore store && !store.IncludeDeletedUsers)
-                store.IncludeDeletedUsers = true;
+
         }
 
         /// <summary>
@@ -51,8 +49,16 @@ namespace OpenApiIssueRepro.Services
         /// </summary>
         public void DisableIncludeDeletedUsers()
         {
-            if (Store is IdentityExpressUserStore store && store.IncludeDeletedUsers)
-                store.IncludeDeletedUsers = false;
+
         }
     }
+}
+
+public class TestUser
+{
+    public string Id { get; set; }
+
+    public string FirstName { get; set; }
+
+    public string LastName { get; set; }
 }
